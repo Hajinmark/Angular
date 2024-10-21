@@ -1,0 +1,120 @@
+<div>
+    <h3>{{fullName}}</h3>
+    <button (click)="completeName()">Click Me</button>
+</div>
+
+<div>
+    <form (ngSubmit)="submitMe()">
+        <label for="">Username: </label>
+        <input type="text" name="username" [(ngModel)]="username" placeholder="Enter Username"> <br><br>
+
+        <label for="">Nickname: </label>
+        <input type="text" name="nickname" [(ngModel)]="nickname" placeholder="Enter Nickname"><br><br>
+
+        <button>Submit</button>
+    </form>
+</div>
+
+<!--Template Reference Variable-->
+<div>
+    <input type="text" name="" #pakyu>
+    <input type="text" name="" #pakyuka>
+    <button (click)="logMessage(pakyu.value, pakyuka.value)">Pindot</button>
+    <p>{{output}}</p>
+</div>
+
+
+<div *ngIf="declarator; else falsy">
+    <h1>True</h1>
+</div>
+
+<ng-template #falsy>
+    <div>
+        <h1>False</h1>
+    </div>
+</ng-template>
+
+<button (click)="submitDeclare()">Click click</button>
+<br><br><br>
+<div>
+    <input type="text" name="checker" [(ngModel)]="checker">
+    <button (click)="submitCheck()">Click to Submit</button>
+    <button (click)="clear()">clear</button>
+
+    <div *ngIf="display; else notSubmit">
+        <h1>You submitted, {{checker}}</h1>
+    </div>
+    
+    <ng-template #notSubmit> 
+        <h2>Not submitted</h2>
+    </ng-template>
+</div>
+<!---
+<div *ngFor="let color of colors">
+    <p>{{color}}</p>
+</div>
+
+<div *ngFor="let user of users">
+    <p>{{user.id}}</p>
+    <p>{{user.name}}</p>
+    <p>{{user.email}}</p>
+</div>
+--->
+<h3>Search User</h3>
+<input type="text" name="" id="" [(ngModel)]="userId" placeholder="Search User Here">
+<button (click)="displayUser()">Search</button>
+
+<div *ngIf="this.searchOutput; else notFound">
+    <div>{{searchOutput.id}}</div>
+    <div>{{searchOutput.name}}</div>
+    <div>{{searchOutput.email}}</div>
+</div>
+
+<ng-template #notFound>
+    <div>Not Found</div>
+</ng-template>
+
+<!--PARENT TO CHILD-->
+<app-child (childData)="message=$event" [parentData]="result"></app-child>
+<!---CHILD To PARENT output-->
+<h4>{{message}}</h4>
+
+<div>
+    <button (click)="displayEmployees()">Show Employees</button>
+    <div *ngIf="this.employees; else noEmployees">
+        <div *ngFor="let employee of employees">
+            <p>{{employee.id}}</p>
+            <p>{{employee.name}}</p>
+            <p>{{employee.email}}</p>
+        </div>
+    </div>
+
+    <ng-template #noEmployees>
+        <p>No Employees</p>
+    </ng-template>
+    
+</div>
+
+<div>
+    <select (change)="textChange($event)">
+        <option value="Employee">Employee</option>
+        <option value="Creditor">Creditor</option>
+    </select>
+    
+</div>
+
+<div>
+
+    <input type="text" name="" id="" #creditorId placeholder="Enter Creditor Id">
+    <button (click)="populateCreditor(creditorId.value)">Display Creditor</button>
+
+    <div *ngIf="this.creditorOutput; else noCreditorFound">
+        <p>{{this.creditorOutput.id}}</p>
+        <p>{{this.creditorOutput.name}}</p>
+        <p>{{this.creditorOutput.email}}</p>
+    </div>
+
+    <ng-template #noCreditorFound>
+        <p>No Creditor Found</p>
+    </ng-template>
+</div>

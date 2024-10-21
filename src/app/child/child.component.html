@@ -1,0 +1,21 @@
+<h1>Parent to child</h1>
+
+<input type="text" name="" id="" [(ngModel)]="myCrush">
+<button (click)="verifyMyCrush()">Verify</button>
+
+<div *ngIf="displayCrush; else notMyCrush">
+    <p>{{'Crush ko yan si '+herName?.toLowerCase()}}</p>
+</div>
+
+<ng-template #notMyCrush>
+    <p>{{result}}</p>
+</ng-template>
+
+<h3>Passed Value from parent to child </h3>
+<input type="text" name="" id="" [(ngModel)]="passedValue">
+<button (click)="passedEvent()">Emit</button>
+
+<h1>UserID: {{userId}}</h1>
+<ul *ngFor="let listUsers of listUser">
+    <li>{{listUsers.userName}}</li>
+</ul>
