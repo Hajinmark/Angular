@@ -75,18 +75,19 @@
         }
       );
     }
-    
-    // pass data
+
     getUserId(userId : any)
     {
       this.router.navigate(['/child', userId]);
+      alert('click');
+      console.log('click');
     }
 
-    /*displayReceivedUserId()
+    displayReceivedUserId()
     {
       this.userService.displayUser(this.userId).subscribe({
         next: response => this.listUser = response,
         error : error => console.log('Error: ',error)
       });
-    }*/
+    }
   }

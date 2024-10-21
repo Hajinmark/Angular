@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { IDisplayUser } from '../model/user';
 0
@@ -26,13 +26,18 @@ export class ChildComponent implements OnInit{
   ];
   userId : any;
   listUser : IDisplayUser[] = [];
-  constructor(private route : ActivatedRoute, private userService : UserService){}
+  constructor(private route : ActivatedRoute, private userService : UserService, private router : Router){}
   
   ngOnInit(): void {
     // getting the value of the pass parameter in the url
-    var userId = parseInt(this.route.snapshot.paramMap.get('userId')?? '0');
+    //var userId = parseInt(this.route.snapshot.paramMap.get('userId')?? '0');
     // store the value
-    this.userId = userId;
+    //this.userId = userId;
+    this.route.paramMap.subscribe((params: ParamMap)=>{
+      let id = parseInt(params.get('userId')??'0');
+      this.userId = id;
+    });
+    
     this.getSpecificUser();
   }
 
@@ -75,6 +80,11 @@ export class ChildComponent implements OnInit{
   {
     var name = 'hakdog';
     return name;
+  }
+
+  goBack()
+  {
+    this.router.navigate(['/user']);
   }
 
 }
