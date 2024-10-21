@@ -71,4 +71,10 @@ export class ChildComponent implements OnInit{
     });
   }
 
+  encryptData() : string
+  {
+    var name = 'hakdog';
+    return name;
+  }
+
 }
